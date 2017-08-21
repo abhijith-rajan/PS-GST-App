@@ -1,0 +1,49 @@
+<script src="./public/jquery-3.2.1.js"></script>
+
+<script>
+$('#messages').submit(function() {
+
+  $.post("./BillBook", {
+      code: "code"
+    }
+    ,function(name) {
+      alert("Data Loaded: " + name); // change for whatever callback you want
+    });
+
+  return false;
+});
+</script>
+<script>
+$(document).ready(function(){
+$('input').change(function(){
+var p = document.getElementById("dum");
+p.innerHTML="HELLO";
+var t= document.getElementsByTagName("TR");
+var total=0;
+if(t.length>=3){
+for(i=1;i<t.length-1;i++){
+var h = t[i].getElementsByTagName("TD");
+var price = parseFloat(h[2].innerHTML);
+var qnt = h[3].children[0];
+var Quantity = parseInt(qnt.value);
+h[4].innerHTML = price*Quantity;
+total+=parseFloat(h[4].innerHTML);
+}
+//t[t.length-1].children[1].innerHTML=total;
+}
+
+});
+});
+</script>
+
+<form id = "messages" method="post" action="./BillBook">
+<input type="number" name="code">
+<input type="submit" method="submit">
+</form>
+<table>
+<tr><th>Code</th><th>Name</th><th>Price</th><th>Quantity</th><th>Total</th></tr>
+<tr><td>100</td><td>Book1</td><td>100</td><td><input type="number" id="qnty" name="qnt"></td><td></td>
+<tr><td>101</td><td>Book2</td><td>100.1</td><td><input type="number" id="qnty" name="qnt"></td><td></td>
+<tr><th colspan="4">Total</th><td></td>
+</table>
+<p id = "dum"></p>

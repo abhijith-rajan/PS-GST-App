@@ -1,0 +1,18 @@
+<script src="./public/jquery-3.2.1.js"></script>
+<script>
+$('#messages').submit(function() {
+
+  $.post("./addBook", {
+      code: "code"
+    }
+    ,function(name) {
+      alert("Data Loaded: " + name); // change for whatever callback you want
+    });
+
+  return false;
+});
+</script>
+<form id = "messages" method="update">
+<input type="number" name="code">
+<input type="submit" method="submit">
+</form>
